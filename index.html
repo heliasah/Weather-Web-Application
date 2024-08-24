@@ -16,15 +16,16 @@
 <body>
     <div class="app">
         <header>
-            <form class="search-form">
-                <input type="search" placeholder="Enter a city..." required class="cityform-input" />
+            <form class="search-form" id="search-form">
+                <input type="search" placeholder="Enter a city..." required id="cityform-input"
+                    class="cityform-input" />
                 <input type="submit" value="🔍" class="searchform-button" />
             </form>
         </header>
         <main>
             <div class="weather-app-data">
                 <div>
-                    <h1 class="weather-city">Tehran</h1>
+                    <h1 class="weather-city" id="weather-city">Tehran</h1>
                     <p class="weather-details">
                         Tuesday 14:49, clouds
                         <br />
@@ -42,6 +43,7 @@
             This project was coded by <a href="https://github.com/heliasah/"> Helia Sahebghadam </a>
         </footer>
     </div>
+    <script src="src/index.js"></script>
 </body>
 
 </html>
