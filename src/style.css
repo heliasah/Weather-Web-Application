@@ -50,10 +50,23 @@ main{
 
 .weather-temp{
     display: flex;
+
 }
 
 .temperature{
-    font-size: 70px;
+    font-size: 80px;
+    margin-left: 10px;
+    
+}
+
+.emoji{
+    font-size: 60px;
+    margin-top: 15px;
+}
+
+.unit{
+    font-size: 17px;
+    margin-top: 12px;
 }
 
 .searchform-button{
