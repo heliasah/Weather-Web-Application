@@ -56,17 +56,20 @@ main{
 .temperature{
     font-size: 80px;
     margin-left: 10px;
+    line-height: 88px;
     
 }
 
 .emoji{
-    font-size: 60px;
+    width: 80px;
+    height: 70px;
     margin-top: 15px;
+
 }
 
 .unit{
     font-size: 17px;
-    margin-top: 12px;
+    margin-top: 8px;
 }
 
 .searchform-button{
