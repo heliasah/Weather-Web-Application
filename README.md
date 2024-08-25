@@ -9,6 +9,7 @@ This repository contains a simple weather application that provides real-time we
  
 # Preview
 ![Preview](example.PNG)
+![Preview](example2.PNG)
 
 # Technologies Used
 - HTML5: The backbone of the app structure.
