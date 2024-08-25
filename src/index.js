@@ -33,7 +33,6 @@ function updateWeather(response){
 
     bodyElement.style.backgroundColor = backgroundColor;
 
-    // Update CSS variables
     document.documentElement.style.setProperty('--text-color', textColor);
 
     getForecast(response.data.city);
@@ -84,16 +83,15 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
 
-  // Get the current date and time
-  let currentDate = new Date();
-  let currentDayTimestamp = Math.floor(currentDate.getTime() / 1000); // Convert to UNIX timestamp
 
-  // Filter out today's forecast
+  let currentDate = new Date();
+  let currentDayTimestamp = Math.floor(currentDate.getTime() / 1000);
+
+
   let filteredForecast = response.data.daily.filter(day => {
     return day.time > currentDayTimestamp;
   });
 
-  // Ensure we have up to 5 forecast days
   filteredForecast.slice(0, 5).forEach(function(day) {
     forecastHTML += `
       <div class="weather-forecast-day">
