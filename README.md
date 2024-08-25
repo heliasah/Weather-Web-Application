@@ -8,7 +8,7 @@ This repository contains a simple weather application that provides real-time we
 - 5-Day Forecast: View the weather forecast for the next five days, including temperature ranges and weather icons.
  
 # Preview
-![Preview](example.png)
+![Preview](example.PNG)
 
 # Technologies Used
 - HTML5: The backbone of the app structure.
