@@ -13,20 +13,33 @@ function updateWeather(response){
     let iconElement = document.querySelector("#icon");
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="icon" />`;
 
-    // Change background color based on the weather condition
     let bodyElement = document.querySelector("body");
     let weatherCondition = response.data.condition.description.toLowerCase();
-    
-    if (weatherCondition.includes("sunny") || weatherCondition.includes("clear")){
-        bodyElement.style.backgroundColor = "yellow";
-    } else if (weatherCondition.includes("clouds")) {
-        bodyElement.style.backgroundColor = "gray";
+    let backgroundColor, textColor;
+
+    if (weatherCondition.includes("sunny")) {
+        backgroundColor = "darkgoldenrod";
+        textColor = "darkgoldenrod";
+    } else if (weatherCondition.includes("clouds") || weatherCondition.includes("clear")) {
+        backgroundColor = "gray";
+        textColor = "gray";
     } else if (weatherCondition.includes("rainy") || weatherCondition.includes("rain")) {
-        bodyElement.style.backgroundColor = "blue";
+        backgroundColor = "cornflowerblue";
+        textColor = "cornflowerblue";
     } else {
-        bodyElement.style.backgroundColor = "pink";
+        backgroundColor = "seashell";
+        textColor = "seashell";
     }
+
+    bodyElement.style.backgroundColor = backgroundColor;
+
+    // Update CSS variables
+    document.documentElement.style.setProperty('--text-color', textColor);
+
+    getForecast(response.data.city);
 }
+
+
 
 
 
@@ -50,42 +63,62 @@ function handleSearch(event){
 
 }
 
+function getForecast (city){
+  let apikey = "db7f142eaefbo73ffc22t50dbbc48b65"
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&units=metric`
+  axios(apiUrl).then(displayForecast);
+  console.log(apiUrl)
+}
 
-function displayForecast(){
-  let days = ["Tue", "Wed","Thu", "Fri", "Sat"];
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+
+function displayForecast(response) {
+  console.log(response.data);
 
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
-  days.forEach(function (day){
 
-      forecastHTML = forecastHTML +
-      `
+  // Get the current date and time
+  let currentDate = new Date();
+  let currentDayTimestamp = Math.floor(currentDate.getTime() / 1000); // Convert to UNIX timestamp
+
+  // Filter out today's forecast
+  let filteredForecast = response.data.daily.filter(day => {
+    return day.time > currentDayTimestamp;
+  });
+
+  // Ensure we have up to 5 forecast days
+  filteredForecast.slice(0, 5).forEach(function(day) {
+    forecastHTML += `
       <div class="weather-forecast-day">
-        <div class="forecast-date">${day}</div>
-        <div class="forecast-icon">🌤️</div>
+        <div class="forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" class="forecast-icon"/>
         <div class="forecast-temperatures">
           <div class="forecast-temperature">
-            <strong>15º</strong>
+            <strong>${Math.round(day.temperature.maximum)}</strong>
           </div>
-          <div class="forecast-temperature">9º</div>
+          <div class="forecast-temperature">${Math.round(day.temperature.minimum)}</div>
         </div>
       </div>
     `;
-
   });
 
   forecastElement.innerHTML = forecastHTML;
-
 }
+
+
 
 
 let searchCityElement = document.querySelector("#search-form");
 searchCityElement.addEventListener("submit",handleSearch);
 
-
-searchCity("Paris")
-
-displayForecast();
+searchCity("Paris");
 
 
 

@@ -45,7 +45,7 @@ main{
 }
 
 .weather-details strong{
-    color: rgb(220, 169, 17);
+    color: var(--text-color, rgba(50, 40, 66, 0.5));
 }
 
 .weather-temp{
@@ -102,13 +102,15 @@ main{
 }
 
 .forecast-icon {
-    font-size: 38px;
-    text-align: center;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+
 }
 
 .forecast-temperatures {
     text-align: center;
-    color: #f65282;
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
     margin-top: 10px;
     display: flex;
     justify-content: center;
@@ -124,4 +126,6 @@ footer{
     text-align: center;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5);
+
 }
+
