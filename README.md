@@ -18,6 +18,3 @@ This repository contains a simple weather application that provides real-time we
 - Axios: A promise-based HTTP client used to fetch weather data.
 - SheCodes Weather API: The source of real-time weather data.
 
-
-# Acknowledgments
-This project was developed as part of the SheCodes course, which provided valuable instruction and resources for understanding the most basic concepts behind web development.
